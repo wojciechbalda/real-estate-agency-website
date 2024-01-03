@@ -7,8 +7,8 @@ import {
   NavbarItem,
   NavbarMenu,
   NavbarMenuToggle,
+  Link
 } from "@nextui-org/react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const menuItems = [
@@ -23,25 +23,25 @@ const menuItems = [
   {
     label: "Blog",
     href: "/blog",
-  },
+  }
 ];
 
 const Header = () => {
   const pathname = usePathname();
 
   return (
-    <Navbar>
+    <Navbar maxWidth="xl">
       <NavbarContent>
         <NavbarMenuToggle className="sm:hidden" />
         <NavbarBrand>
-          <p className="font-bold text-inherit">Real estate company</p>
+          <Link href="/" className="font-bold text-inherit">Real estate company</Link>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="end">
         {menuItems.map((item) => (
           <NavbarItem key={item.label} isActive={pathname === item.href}>
-            <Link href={item.href}>{item.label}</Link>
+            <Link color={`${pathname === item.href ? "primary" : "foreground"}`} href={item.href}>{item.label}</Link>
           </NavbarItem>
         ))}
       </NavbarContent>
